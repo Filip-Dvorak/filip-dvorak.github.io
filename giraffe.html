@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking Giraffes</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #95eb64; /* Sky blue background */
+        }
+
+        .giraffe {
+            position: absolute;
+            bottom: 0;
+            animation: walk 10s linear infinite;
+        }
+
+        @keyframes walk {
+            0% {
+                transform: translateX(-200px);
+            }
+            100% {
+                transform: translateX(100vw);
+            }
+        }
+
+        .giraffe img {
+            width: 100px;
+            height: auto;
+            animation: bounce 0.8s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .static-image {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .static-image img {
+            width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="static-image">
+    <img src="azulin.png" alt="Ažulín">
+</div>
+
+<script>
+    // Create multiple animated giraffes
+    const giraffeCount = 50;
+    const giraffeImages = [
+        'giraffe1.png', // Replace with actual giraffe image URLs
+        'giraffe2.png',
+        'giraffe3.png',
+        'giraffe4.png',
+        'giraffe5.png',
+        'giraffe6.png'
+    ];
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    for (let i = 0; i < giraffeCount; i++) {
+        const giraffe = document.createElement('div');
+        giraffe.classList.add('giraffe');
+        giraffe.style.animationDuration = `${getRandomInt(8, 12)}s`;
+        giraffe.style.bottom = `${getRandomInt(0, 50)}vh`;
+        giraffe.style.left = `${getRandomInt(-200, 100)}px`;
+
+        const img = document.createElement('img');
+        img.src = giraffeImages[getRandomInt(0, giraffeImages.length)];
+        img.alt = 'Giraffe';
+
+        giraffe.appendChild(img);
+        document.body.appendChild(giraffe);
+    }
+</script>
+
+</body>
+</html>
